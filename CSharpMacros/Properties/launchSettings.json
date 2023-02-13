@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CSharpMacros": {
+      "commandName": "Project",
+      "commandLineArgs": "Test.cs"
+    }
+  }
+}
