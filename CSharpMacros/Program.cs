@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
 namespace CSharpMacros {
-    internal class Program {
-        static void Main(string[] args) {
+    public class Program {
+        public static void Main(string[] args) {
             if (args.Length != 1) {
                 Console.WriteLine("Usage: CSharpMacros.exe <path to file>");
                 return;
@@ -16,7 +16,7 @@ namespace CSharpMacros {
             }
 
             var text = File.ReadAllText(path);
-            string[] lines = text.Split(Environment.NewLine);
+            string[] lines = text.Split(Environment.NewLine, StringSplitOptions.TrimEntries);
             var macros = new Dictionary<string, (List<string> parameters, string body)>();
 
             for(int i = 0; i < lines.Length; i++) {
@@ -46,6 +46,16 @@ namespace CSharpMacros {
                 }
             }
 
+            // dump macro info
+            Console.WriteLine("Macros:");
+            foreach (var macro in macros) {
+                var name = macro.Key;
+                var parameters = macro.Value.parameters;
+                var body = macro.Value.body;
+
+                Console.WriteLine($"Macro {name} with parameters {string.Join(", ", parameters)} and body {body}");
+            }
+
             // remove everything between #region MacroDummies and #endregion
             text = Regex.Replace(text, @"#region MacroDummies.*#endregion", "", RegexOptions.Singleline);
 
@@ -70,7 +80,7 @@ namespace CSharpMacros {
                 }
             }
 
-            File.WriteAllText("macro_" + path, text);
+            File.WriteAllText(path, text);
         }
     }
 }
