@@ -31,7 +31,9 @@ Example:
 
 # Macro Usage
 To use a macro, use following syntax (its just like a method call):
-/*MyMacro(1, 2)*/
+```csharp
+MyMacro(1, 2)
+```
 
 # My IDE is complaining!
 It is recommended to add dummy methods to prevent this. CSharpMacros automatically removes everything in the "MacroDummies" region.
