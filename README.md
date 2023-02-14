@@ -32,7 +32,12 @@ Example:
 # Macro Usage
 To use a macro, use following syntax (its just like a method call):
 ```csharp
-MyMacro(1, 2)
+MyMacro(1, 2);
+
+// Example usage:
+Console.WriteLine(PlusAndStringify(1,2));
+// -> will extend to:
+Console.WriteLine((1+2).ToString());
 ```
 
 # My IDE is complaining!
