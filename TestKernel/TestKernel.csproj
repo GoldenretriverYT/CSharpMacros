@@ -17,6 +17,7 @@
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
+        <RunPostBuildEvent>Always</RunPostBuildEvent>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,5 +25,13 @@
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
     </ItemGroup>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+      <Exec Command="C:\Users\franc\source\repos\CSharpMacros\CosmosMacros\bin\Debug\net6.0\CosmosMacros.exe $(ProjectDir) apply" />
+    </Target>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="C:\Users\franc\source\repos\CSharpMacros\CosmosMacros\bin\Debug\net6.0\CosmosMacros.exe $(ProjectDir) restore" />
+    </Target>
 
 </Project>
