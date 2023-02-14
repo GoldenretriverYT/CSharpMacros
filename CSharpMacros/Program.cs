@@ -22,6 +22,8 @@ namespace CSharpMacros {
             for(int i = 0; i < lines.Length; i++) {
                 var line = lines[i];
                 if (line.StartsWith("/*macro ")) {
+                    string macroDefinitionLiteral = line;
+
                     List<string> parameters = line.Split(" ").Skip(1).ToList();
                     string name = parameters[0];
 
@@ -30,6 +32,7 @@ namespace CSharpMacros {
                     while (i < lines.Length-1) {
                         i++;
                         line = lines[i];
+                        macroDefinitionLiteral += Environment.NewLine + line;
 
                         if (line.EndsWith("*/"))
                             break;
@@ -38,6 +41,8 @@ namespace CSharpMacros {
                     }
 
                     macros.Add(name, (parameters, body));
+
+                    text = text.Replace(macroDefinitionLiteral, "");
                 }
             }
 
