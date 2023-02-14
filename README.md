@@ -2,7 +2,7 @@
  Bringing Macros to CSharp, primarily for Cosmos to prevent method calling performance overhead
 
 # WORK IN PROGRESS!
-This is still work in progress.
+This is still work in progress and might ruin your files - but it creates a backup before running!
 
 # How to build my project using CSharpMacros?
 1. Download the latest release or build it yourself.
